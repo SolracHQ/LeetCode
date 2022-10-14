@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/container-with-most-water/
 use crate::common::Solution;
 
 impl Solution {
@@ -10,7 +11,7 @@ impl Solution {
             // Skip right bars smaller than actual
             while (min_h >= height[right]) && (left < right) {
                 right -= 1;
-            } 
+            }
             // Skip left bars smaller than actual
             while (min_h >= height[left]) && (left < right) {
                 left += 1;
