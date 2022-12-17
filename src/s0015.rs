@@ -5,6 +5,7 @@ use crate::common::Solution;
 use std::collections::HashMap;
 use std::collections::HashSet;
 
+#[inline(always)]
 fn search_space(nums: &[i32]) -> HashMap<i32, i32> {
     let mut result = HashMap::new();
     for n in nums {
@@ -47,46 +48,32 @@ impl Triplet {
     }
 }
 
-fn two_sum(
-    nums: &[i32],
-    target: i32,
-    lookup_table: &HashMap<i32, i32>,
-    ss: &HashMap<i32, i32>
-) -> Vec<Triplet> {
+#[inline(always)]
+fn two_sum(nums: &[i32], target: i32, ss: &HashMap<i32, i32>) -> Vec<Triplet> {
     nums.iter()
         .enumerate()
-        .filter(|(_, number)| { lookup_table.contains_key(&(target - *number)) })
-        .map(|(index, number)| {
-            Triplet::new(
-                -target,
-                nums[index],
-                lookup_table[&(target - *number)],
-            )
-        })
+        .filter(|(_, number)| ss.contains_key(&(target - *number)))
+        .map(|(index, number)| Triplet::new(-target, nums[index], target - *number))
         .filter(|t| {
-            if t.x == t.y && t.y == t.z {
-                ss[&t.x] >= 3
-            }else {
-                ((t.x == t.y && ss[&t.x] >= 2) || (t.x == t.z && ss[&t.x] >= 2) || (t.z == t.y && ss[&t.z] >= 2)) ||
-                (t.x != t.y && t.y != t.z)
-            }
+            (t.x != t.y && t.y != t.z)
+                || if t.x == t.y && t.y == t.z {
+                    ss[&t.x] >= 3
+                } else {
+                    (t.x == t.y && ss[&t.x] >= 2)
+                        || (t.x == t.z && ss[&t.x] >= 2)
+                        || (t.z == t.y && ss[&t.z] >= 2)
+                }
         })
         .collect()
 }
 
 impl Solution {
     pub fn three_sum(nums: Vec<i32>) -> Vec<Vec<i32>> {
-
         let ss = search_space(&nums);
-        let nums: Vec<i32> = ss.keys().map(|x|*x).collect();
-
-        let lookup_table: HashMap<_, _> = nums
-            .iter()
-            .map(| value| (*value, *value))
-            .collect();
+        let nums: Vec<i32> = ss.keys().map(|x| *x).collect();
 
         nums.iter()
-            .flat_map(|x| two_sum(&nums, -*x, &lookup_table, &ss))
+            .flat_map(|x| two_sum(&nums, -*x, &ss))
             .collect::<HashSet<Triplet>>()
             .into_iter()
             .map(|t| vec![t.x, t.y, t.z])
