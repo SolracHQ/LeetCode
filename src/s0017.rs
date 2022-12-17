@@ -16,18 +16,18 @@ fn loopback(d: &u8) -> &'static [char] {
 
 impl Solution {
     pub fn letter_combinations(digits: String) -> Vec<String> {
+        if digits.len() == 0 {return vec![];}
         let sets: Vec<&[char]> = digits
             .as_bytes()
             .iter()
             .map(loopback)
             .collect();
         let total: usize = sets.iter().map(|s| s.len()).sum();
-        let mut result = vec![String::with_capacity(digits.len()); total];
-        for set in sets {
-            for (idx, s) in result.iter_mut().enumerate() {
-                s.push(set[idx % set.len()])
-            }
-        }
+        let result = sets.iter().fold(vec![String::new()], |res, set| {
+            (0..(res.len()*set.len()))
+            .map(|i| format!("{}{}", res[i/set.len()], set[i%set.len()]))
+            .collect()
+        });
         result
     }
 }

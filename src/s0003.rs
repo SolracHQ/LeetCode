@@ -17,7 +17,7 @@ pub fn length_of_longest_substring(s: String) -> i32 {
 
 mod test {
 
-    use crate::s0003::length_of_longest_substring;    
+    use super::*;    
 
     #[test]
     fn example_1() {
