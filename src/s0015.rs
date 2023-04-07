@@ -1,6 +1,6 @@
 // https://leetcode.com/problems/3sum/
 
-use crate::common::Solution;
+struct Solution;
 
 use std::collections::HashMap;
 use std::collections::HashSet;

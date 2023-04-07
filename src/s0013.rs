@@ -1,5 +1,5 @@
 // https://leetcode.com/problems/roman-to-integer/
-use crate::common::Solution;
+struct Solution;
 
 impl Solution {
     pub fn roman_to_int(s: String) -> i32 {

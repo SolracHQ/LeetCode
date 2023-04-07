@@ -26,10 +26,10 @@ impl Pattern {
     pub fn new(re: &str) -> Pattern {
         let re = re.as_bytes();
         let mut states = vec![];
-        for index in 0..re.len() {
-            match re[index] {
+        for r in re {
+            match r {
                 b'a'..=b'z' => states.push(State {
-                    kind: Kind::Element(re[index] as char),
+                    kind: Kind::Element(*r as char),
                     quantifier: Quantifier::One,
                 }),
                 b'.' => states.push(State {
@@ -45,8 +45,8 @@ impl Pattern {
         Pattern { idx: 0, states }
     }
 
-    pub fn is_match(&self, text: &str) -> bool {
-        is_match_priv(self.clone(),text, 0)
+    pub fn re_match(&mut self, text: &str) -> bool {
+        is_match_priv(self,text, 0)
     }
 }
 
@@ -59,7 +59,7 @@ impl State {
     }
 }
 
-fn is_match_priv(mut pattern: Pattern, text: &str, index: usize) -> bool {
+fn is_match_priv(mut pattern: &mut Pattern, text: &str, index: usize) -> bool {
     let mut index = index;
     let chars = text.chars().collect::<Vec<_>>();
     loop {
@@ -83,10 +83,10 @@ fn is_match_priv(mut pattern: Pattern, text: &str, index: usize) -> bool {
                 fake[0].quantifier = Quantifier::One;
                 fake.extend_from_slice(&pattern.states[pattern.idx..]);
                 pattern.idx += 1;
-                if is_match_priv(Pattern { idx: 0, states: fake }, text, index) {
+                if is_match_priv(&mut Pattern { idx: 0, states: fake }, text, index) {
                     return true;
                 }
             },
         }
-    } 
+    }
 }

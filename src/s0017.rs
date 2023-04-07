@@ -1,4 +1,4 @@
-use crate::common::Solution;
+struct Solution;
 
 fn loopback(d: &u8) -> &'static [char] {
     match d {

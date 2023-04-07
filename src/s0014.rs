@@ -1,5 +1,5 @@
 // https://leetcode.com/problems/longest-common-prefix/
-use crate::common::Solution;
+struct Solution;
 
 impl Solution {
     pub fn longest_common_prefix(strs: Vec<String>) -> String {

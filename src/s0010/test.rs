@@ -1,4 +1,4 @@
-use super::super::common::Solution;
+use super::Solution;
 
 #[test]
 fn example1() {

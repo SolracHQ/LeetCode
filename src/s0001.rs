@@ -1,5 +1,4 @@
 use std::collections::HashMap;
-use crate::common::Solution;
 
 /**
  * 1. Two Sum
@@ -12,6 +11,10 @@ use crate::common::Solution;
  *
  * You can return the answer in any order.
  */
+#[cfg(test)]
+struct Solution;
+
+#[cfg(test)]
 impl Solution {
     pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
         // Create a new empty HashMap to store complements of the target
@@ -39,7 +42,7 @@ impl Solution {
 
 #[cfg(test)]
 mod test {
-    use crate::common::Solution;
+    use super::Solution;
 
     #[test]
     fn example_1() {
