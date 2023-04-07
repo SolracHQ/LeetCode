@@ -1,5 +1,5 @@
-use crate::common::Solution;
 use std::collections::HashMap;
+use crate::common::Solution;
 
 /**
  * 1. Two Sum
