@@ -15,6 +15,7 @@ The following is a list of problems that have been solved, along with the corres
 - Reverse Integer: s0007.rs
 - String to Integer (atoi): s0008.rs
 - Palindrome Number: s0009.rs
+- Regular Expression Matching: s0010/mod.rs
 - Container With Most Water: s0011.rs
 - Integer to Roman: s0012.rs
 - Roman to Integer: s0013.rs
@@ -22,6 +23,7 @@ The following is a list of problems that have been solved, along with the corres
 - 3Sum: s0015.rs
 - Letter Combinations of a Phone Number: s0017.rs
 - Remove Nth Node From End of List: s0019.rs
+- Valid Parentheses: s0020.rs
 ## Contributions
 Feel free to submit a pull request if you find any errors or want to suggest an alternative solution.
 
