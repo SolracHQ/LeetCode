@@ -1,3 +1,14 @@
+trait Sortable<T: Ord> {
+    fn sorted(&mut self) -> &mut Self;
+}
+
+impl <T: Ord> Sortable<T> for Vec<T> {
+    fn sorted(&mut self) -> &mut Self {
+        self.sort_unstable();
+        self
+    }
+}
+
 mod s0001;
 mod s0002;
 mod s0003;
@@ -15,3 +26,4 @@ mod s0015;
 mod s0017;
 mod s0019;
 mod s0020;
+mod s0022;

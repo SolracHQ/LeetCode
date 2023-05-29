@@ -1,95 +1,63 @@
-// https://leetcode.com/problems/3sum/
-
+/**
+ * # 3Sum - https://leetcode.com/problems/3sum/
+ * Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+ * Notice that the solution set must not contain duplicate triplets.
+ */
+#[cfg(test)]
 struct Solution;
 
-use std::collections::HashMap;
-use std::collections::HashSet;
-
-#[inline(always)]
-fn search_space(nums: &[i32]) -> HashMap<i32, i32> {
-    let mut result = HashMap::new();
-    for n in nums {
-        if result.contains_key(n) {
-            result.insert(*n, result.get(n).unwrap() + 1);
-        } else {
-            result.insert(*n, 1);
-        }
-    }
-    result
-}
-
-#[derive(Hash, PartialEq, Eq, Debug)]
-struct Triplet {
-    x: i32,
-    y: i32,
-    z: i32,
-}
-
-impl Triplet {
-    fn new(a: i32, b: i32, c: i32) -> Self {
-        let x = a.min(b).min(c);
-        let z = a.max(b).max(c);
-        let y = if (x, z) == (a, b) {
-            c
-        } else if (x, z) == (b, a) {
-            c
-        } else if (x, z) == (a, c) {
-            b
-        } else if (x, z) == (c, a) {
-            b
-        } else if (x, z) == (b, c) {
-            a
-        } else if (x, z) == (c, b) {
-            a
-        } else {
-            unreachable!("This will never happen")
-        };
-        Self { x, y, z }
-    }
-}
-
-#[inline(always)]
-fn two_sum(nums: &[i32], target: i32, ss: &HashMap<i32, i32>) -> Vec<Triplet> {
-    nums.iter()
-        .enumerate()
-        .filter(|(_, number)| ss.contains_key(&(target - *number)))
-        .map(|(index, number)| Triplet::new(-target, nums[index], target - *number))
-        .filter(|t| {
-            (t.x != t.y && t.y != t.z)
-                || if t.x == t.y && t.y == t.z {
-                    ss[&t.x] >= 3
-                } else {
-                    (t.x == t.y && ss[&t.x] >= 2)
-                        || (t.x == t.z && ss[&t.x] >= 2)
-                        || (t.z == t.y && ss[&t.z] >= 2)
-                }
-        })
-        .collect()
-}
-
+#[cfg(test)]
 impl Solution {
-    pub fn three_sum(nums: Vec<i32>) -> Vec<Vec<i32>> {
-        let ss = search_space(&nums);
-        let nums: Vec<i32> = ss.keys().map(|x| *x).collect();
+    pub fn three_sum(mut nums: Vec<i32>) -> Vec<Vec<i32>> {
+        let n = nums.len();
+        let mut res = Vec::new();
 
-        nums.iter()
-            .flat_map(|x| two_sum(&nums, -*x, &ss))
-            .collect::<HashSet<Triplet>>()
-            .into_iter()
-            .map(|t| vec![t.x, t.y, t.z])
-            .collect()
+        // Sort the input array in non-decreasing order
+        nums.sort_unstable();
+
+        for i in 0..n {
+            // Skip over duplicates
+            if i > 0 && nums[i] == nums[i - 1] {
+                continue;
+            }
+
+            let mut left = i + 1;
+            let mut right = n - 1;
+            // Use two pointers to find pairs that sum to -nums[i]
+            while left < right {
+                let sum = nums[i] + nums[left] + nums[right];
+                if sum == 0 {
+                    res.push(vec![nums[i], nums[left], nums[right]]);
+                    left += 1;
+                    right -= 1;
+                    // Skip over duplicates
+                    while left < right && nums[left] == nums[left - 1] {
+                        left += 1;
+                    }
+                    while left < right && nums[right] == nums[right + 1] {
+                        right -= 1;
+                    }
+                } else if sum < 0 {
+                    left += 1;
+                } else {
+                    right -= 1;
+                }
+            }
+        }
+        res
     }
 }
 
 #[cfg(test)]
 mod tests {
+    use crate::Sortable;
     use super::*;
 
     #[test]
     fn example_1() {
         assert_eq!(
-            Solution::three_sum(vec![-1, 0, 1, 2, -1, -4]),
-            vec![vec![-1, -1, 2], vec![-1, 0, 1]]
+            Solution::three_sum(vec![-1, 0, 1, 2, -1, -4]).sorted(),
+            vec![vec![-1, -1, 2], vec![-1, 0, 1]].sorted()
         )
     }
 
@@ -114,7 +82,7 @@ mod tests {
     #[test]
     fn example_5() {
         assert_eq!(
-            Solution::three_sum(vec![-1, 0, 1, 2, -1, -4, -2, -3, 3, 0, 4]),
+            Solution::three_sum(vec![-1, 0, 1, 2, -1, -4, -2, -3, 3, 0, 4]).sorted(),
             helper(vec![
                 [-4, 0, 4],
                 [-4, 1, 3],
@@ -125,7 +93,7 @@ mod tests {
                 [-2, 0, 2],
                 [-1, -1, 2],
                 [-1, 0, 1]
-            ])
+            ]).sorted()
         )
     }
 

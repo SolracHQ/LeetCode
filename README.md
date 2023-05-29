@@ -24,6 +24,8 @@ The following is a list of problems that have been solved, along with the corres
 - Letter Combinations of a Phone Number: s0017.rs
 - Remove Nth Node From End of List: s0019.rs
 - Valid Parentheses: s0020.rs
+- Generate Parentheses: s0022.rs
+
 ## Contributions
 Feel free to submit a pull request if you find any errors or want to suggest an alternative solution.
 
