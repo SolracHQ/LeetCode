@@ -59,7 +59,7 @@ impl State {
     }
 }
 
-fn is_match_priv(mut pattern: &mut Pattern, text: &str, index: usize) -> bool {
+fn is_match_priv(pattern: &mut Pattern, text: &str, index: usize) -> bool {
     let mut index = index;
     let chars = text.chars().collect::<Vec<_>>();
     loop {

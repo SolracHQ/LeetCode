@@ -49,3 +49,13 @@ mod s0021;
 mod s0022;
 #[cfg(test)]
 mod s0023;
+#[cfg(test)]
+mod s0026;
+#[cfg(test)]
+mod s0027;
+#[cfg(test)]
+mod s0028;
+#[cfg(test)]
+mod s0029;
+#[cfg(test)]
+mod s0032;
