@@ -24,7 +24,14 @@ The following is a list of problems that have been solved, along with the corres
 - Letter Combinations of a Phone Number: s0017.rs
 - Remove Nth Node From End of List: s0019.rs
 - Valid Parentheses: s0020.rs
+- Merge Two Sorted Lists: s0021.rs
 - Generate Parentheses: s0022.rs
+- Merge k Sorted Lists: s0023.rs
+- Remove Duplicates from Sorted Array: s0026.rs
+- Remove Element: s0027.rs
+- Implement strStr(): s0028.rs
+- Divide Two Integers: s0029/rs
+- Longest Valid Parentheses: s0032/rs
 
 ## Contributions
 Feel free to submit a pull request if you find any errors or want to suggest an alternative solution.
