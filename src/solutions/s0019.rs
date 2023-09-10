@@ -67,8 +67,7 @@ impl Solution {
 
 #[cfg(test)]
 mod test {
-    use crate::s0019::{ListNode, to_list};
-    use super::Solution;
+    use super::*;
 
     fn from_vec(list: Vec<i32>) -> Option<Box<ListNode>> {
         to_list(&[&list])

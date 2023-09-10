@@ -6,11 +6,7 @@
  *
  * The matching should cover the entire input string (not partial).
  */
-#[cfg(test)]
 struct Solution;
-#[cfg(test)]
-pub mod solution;
-#[cfg(test)]
 mod regex;
-#[cfg(test)]
+pub mod solution;
 mod test;

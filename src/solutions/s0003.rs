@@ -40,7 +40,7 @@ impl Solution {
 #[cfg(test)]
 mod test {
     #[cfg(test)]
-    use crate::s0003::Solution;
+    use super::*;
 
     #[test]
     fn example_1() {

@@ -63,8 +63,7 @@ impl Solution {
 
 #[cfg(test)]
 mod test {
-    use crate::s0002::ListNode;
-    use super::Solution;
+    use super::*;
 
     fn to_node(values: &[i32]) -> Option<Box<ListNode>> {
         let mut head = None;
