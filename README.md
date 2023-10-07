@@ -39,6 +39,7 @@ The following is a list of problems that have been solved, along with the corres
 | Sudoku Solver                                  | s0037.rs     |
 | Count and Say                                  | s0038.rs     |
 | Pascal's Triangle                              | s0118.rs     |
+| Reverse Linked List                            | s0206.rs     |
 
 ## Contributions
 Feel free to submit a pull request if you find any errors or want to suggest an alternative solution.
