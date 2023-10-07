@@ -23,6 +23,7 @@ mod s0027;
 mod s0028;
 mod s0029;
 mod s0032;
+mod s0033;
 mod s0036;
 mod s0037;
 mod s0118;
