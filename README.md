@@ -37,6 +37,7 @@ The following is a list of problems that have been solved, along with the corres
 | Search Insert Position                         | s0035.rs     |
 | Valid Sudoku                                   | s0036.rs     |
 | Sudoku Solver                                  | s0037.rs     |
+| Count and Say                                  | s0038.rs     |
 | Pascal's Triangle                              | s0118.rs     |
 
 ## Contributions
