@@ -33,6 +33,8 @@ The following is a list of problems that have been solved, along with the corres
 | Implement strStr()                             | s0028.rs     |
 | Divide Two Integers                            | s0029.rs     |
 | Longest Valid Parentheses                      | s0032.rs     |
+| Search in Rotated Sorted Array                 | s0033.rs     |
+| Search Insert Position                         | s0035.rs     |
 | Valid Sudoku                                   | s0036.rs     |
 | Sudoku Solver                                  | s0037.rs     |
 | Pascal's Triangle                              | s0118.rs     |
