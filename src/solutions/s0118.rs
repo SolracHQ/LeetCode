@@ -7,10 +7,10 @@ struct Solution;
 
 impl Solution {
     pub fn generate(num_rows: i32) -> Vec<Vec<i32>> {
-        let num_rows = num_rows as usize;
         if num_rows <= 0 {
             return vec![];
         }
+        let num_rows = num_rows as usize;
         let mut result = Vec::with_capacity(num_rows);
         
         for i in 0..num_rows {
