@@ -9,8 +9,9 @@ To run the tests for a specific problem, use the command cargo test solutions::s
 ## Problems solved
 
 The following is a list of problems that have been solved, along with the corresponding file names in the src/solutions directory:
+
 | Problem name                                   | file         |
-| ---------------------------------------------- | ------------ |
+|------------------------------------------------|--------------|
 | Two Sum                                        | s0001.rs     |
 | Add Two Numbers                                | s0002.rs     |
 | Longest Substring Without Repeating Characters | s0003.rs     |
@@ -45,6 +46,7 @@ The following is a list of problems that have been solved, along with the corres
 | Combination Sum                                | s0039.rs     |
 | Combination Sum II                             | s0040.rs     |
 | Pow(x, n)                                      | s0050.rs     |
+| Length of Last Word                            | s0058.rs     |
 | Pascal's Triangle                              | s0118.rs     |
 | Reverse Linked List                            | s0206.rs     |
 
