@@ -1,8 +1,22 @@
 /**
- * # 6. Zigzag Conversion - https://leetcode.com/problems/zigzag-conversion/
- * The string "PAYPALISHIRING" is written in a zigzag pattern on a given number
- * of rows like this: (you may want to display this pattern in a fixed font for better legibility)
- */
+* 6. ZigZag Conversion
+*
+* The string 'PAYPALISHIRING' is written in a zigzag pattern on a given number of rows, then read line by line.
+
+*
+* Example 1:
+* Input: s = "PAYPALISHIRING", numRows = 3
+* Output: "PAHNAPLSIIGYIR"
+*
+* Example 2:
+* Input: s = "PAYPALISHIRING", numRows = 4
+* Output: "PINALSIGYAHRPI"
+*
+* Example 3:
+* Input: s = "A", numRows = 1
+* Output: "A"
+
+*/
 #[cfg(test)]
 struct Solution;
 
@@ -52,23 +66,28 @@ mod test {
 
     #[test]
     fn example_1() {
+        // Input: s = "PAYPALISHIRING", numRows = 3
+        // Expected: "PAHNAPLSIIGYIR"
         assert_eq!(
-            "PAHNAPLSIIGYIR",
-            &Solution::convert("PAYPALISHIRING".to_owned(), 3)
-        )
+            Solution::convert("PAYPALISHIRING".to_string(), 3),
+            "PAHNAPLSIIGYIR".to_string()
+        );
     }
+
     #[test]
     fn example_2() {
+        // Input: s = "PAYPALISHIRING", numRows = 4
+        // Expected: "PINALSIGYAHRPI"
         assert_eq!(
-            "PINALSIGYAHRPI",
-            &Solution::convert("PAYPALISHIRING".to_owned(), 4)
-        )
+            Solution::convert("PAYPALISHIRING".to_string(), 4),
+            "PINALSIGYAHRPI".to_string()
+        );
     }
+
     #[test]
     fn example_3() {
-        assert_eq!(
-            "A",
-            &Solution::convert("A".to_owned(), 1)
-        )
+        // Input: s = "A", numRows = 1
+        // Expected: "A"
+        assert_eq!(Solution::convert("A".to_string(), 1), "A".to_string());
     }
 }

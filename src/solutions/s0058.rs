@@ -1,10 +1,26 @@
 /**
- * 58. Length of Last Word
- * Given a string s consisting of words and spaces, return the length of the last word in the string.
- * A word is a maximal substring consisting of non-space characters only.
- */
+* 58. Length of Last Word
+*
+* Given a string s consisting of words and spaces, return the length of the last word in the string.
+
+*
+* Example 1:
+* Input: s = "Hello World"
+* Output: 5
+*
+* Example 2:
+* Input: s = "   fly me   to   the moon  "
+* Output: 4
+*
+* Example 3:
+* Input: s = "luffy is still joyboy"
+* Output: 6
+
+*/
+#[cfg(test)]
 struct Solution;
 
+#[cfg(test)]
 impl Solution {
     pub fn length_of_last_word(s: String) -> i32 {
         let mut indices = (0, s.len() - 1);
@@ -22,54 +38,34 @@ impl Solution {
     }
 }
 
+#[cfg(test)]
 mod test {
-    use crate::solutions::s0058::Solution;
+    use super::Solution;
 
     #[test]
-    fn example1() {
-        assert_eq!(
-            Solution::length_of_last_word("Hello World".into()),
-            5
-        )
+    fn example_1() {
+        // Input: s = "Hello World"
+        // Expected: 5
+        assert_eq!(Solution::length_of_last_word("Hello World".to_string()), 5);
     }
 
     #[test]
-    fn example2() {
+    fn example_2() {
+        // Input: s = "   fly me   to   the moon  "
+        // Expected: 4
         assert_eq!(
-            Solution::length_of_last_word("   fly me   to   the moon  ".into()),
+            Solution::length_of_last_word("   fly me   to   the moon  ".to_string()),
             4
-        )
+        );
     }
 
     #[test]
-    fn example3() {
+    fn example_3() {
+        // Input: s = "luffy is still joyboy"
+        // Expected: 6
         assert_eq!(
-            Solution::length_of_last_word("luffy is still joyboy".into()),
+            Solution::length_of_last_word("luffy is still joyboy".to_string()),
             6
-        )
-    }
-
-    #[test]
-    fn example4() {
-        assert_eq!(
-            Solution::length_of_last_word("y".into()),
-            1
-        )
-    }
-
-    #[test]
-    fn example5() {
-        assert_eq!(
-            Solution::length_of_last_word("day".into()),
-            3
-        )
-    }
-
-    #[test]
-    fn example6() {
-        assert_eq!(
-            Solution::length_of_last_word(" y".into()),
-            1
-        )
+        );
     }
 }

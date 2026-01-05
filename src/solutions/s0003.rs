@@ -1,9 +1,22 @@
 /**
- * # 3. Longest Substring Without Repeating Characters - https://leetcode.com/problems/longest-substring-without-repeating-characters/
- * Given a string s, find the length of the longest
- * substring without repeating characters.
- * Use the use statement and ````` to format.
- */
+* 3. Longest Substring Without Repeating Characters
+*
+* Given a string s, find the length of the longest substring without repeating characters.
+
+*
+* Example 1:
+* Input: s = "abcabcbb"
+* Output: 3
+*
+* Example 2:
+* Input: s = "bbbbb"
+* Output: 1
+*
+* Example 3:
+* Input: s = "pwwkew"
+* Output: 3
+
+*/
 #[cfg(test)]
 struct Solution;
 
@@ -22,10 +35,11 @@ impl Solution {
         for end in 0..bytes.len() {
             // get current byte as usize
             let byte = bytes[end] as usize;
-            while sub[byte] {  // if the current byte is already in the current substring
+            while sub[byte] {
+                // if the current byte is already in the current substring
                 // remove the byte at the starting index of the current substring
                 sub[bytes[start] as usize] = false;
-                start += 1;  // move the starting index of the current substring forward by 1
+                start += 1; // move the starting index of the current substring forward by 1
             }
             // add the current byte to the current substring
             sub[byte] = true;
@@ -36,14 +50,14 @@ impl Solution {
     }
 }
 
-
 #[cfg(test)]
 mod test {
-    #[cfg(test)]
-    use super::*;
+    use super::Solution;
 
     #[test]
     fn example_1() {
+        // Input: s = "abcabcbb"
+        // Expected: 3
         assert_eq!(
             3,
             Solution::length_of_longest_substring("abcabcbb".to_owned())
@@ -52,17 +66,18 @@ mod test {
 
     #[test]
     fn example_2() {
-        assert_eq!(
-            1,
-            Solution::length_of_longest_substring("bbbbb".to_owned())
-        );
+        // Input: s = "bbbbb"
+        // Expected: 1
+        assert_eq!(1, Solution::length_of_longest_substring("bbbbb".to_owned()));
     }
 
     #[test]
     fn example_3() {
+        // Input: s = "pwwkew"
+        // Expected: 3
         assert_eq!(
             3,
             Solution::length_of_longest_substring("pwwkew".to_owned())
-        )
+        );
     }
 }

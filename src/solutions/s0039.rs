@@ -1,17 +1,28 @@
-/// 39. Combination Sum
-/// https://leetcode.com/problems/combination-sum/
-///
-/// Given a set of candidate numbers (candidates) (without duplicates) and a target number (target), find all unique combinations in candidates where the candidate numbers sums to target.
-/// The same repeated number may be chosen from candidates unlimited number of times.
-/// Note:
-/// - All numbers (including target) will be positive integers.
-/// - The solution set must not contain duplicate combinations.
-/// - For example, given candidate set [2, 3, 6, 7] and target 7,
+/**
+* 39. Combination Sum
+*
+* Given an array of distinct integers candidates and a target integer target, return a list of all unique combinations of candidates where the chosen numbers sum to target.
+
+*
+* Example 1:
+* Input: candidates = [2,3,6,7], target = 7
+* Output: [[2,2,3],[7]]
+*
+* Example 2:
+* Input: candidates = [2,3,5], target = 8
+* Output: [[2,2,2,2],[2,3,3],[3,5]]
+*
+* Example 3:
+* Input: candidates = [2], target = 1
+* Output: []
+
+*/
+#[cfg(test)]
 struct Solution;
 
+#[cfg(test)]
 impl Solution {
     pub fn combination_sum(candidates: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
-
         let mut candidates = candidates;
         candidates.sort_unstable();
 
@@ -23,8 +34,8 @@ impl Solution {
                 // If the sum is equal to the target, add the current combination to the result
                 result.push(indices.iter().map(|indice| candidates[*indice]).collect());
                 continue;
-            } 
-            
+            }
+
             if sum < target {
                 // If the sum is less than the target, continue exploring combinations
                 // [.., last, last] and [.., last + 1] if last + 1 < candidates.len()
@@ -46,30 +57,41 @@ impl Solution {
     }
 }
 
+#[cfg(test)]
 mod test {
-    use super::*;
+    use super::Solution;
 
-    #[test]
-    fn example1() {
-        let candidates = vec![2, 3, 6, 7];
-        let target = 7;
-        let answer = vec![vec![2, 2, 3], vec![7]];
-        assert_eq!(Solution::combination_sum(candidates, target), answer);
+    fn normalize(mut v: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
+        for inner in v.iter_mut() {
+            inner.sort_unstable();
+        }
+        v.sort_unstable();
+        v
     }
 
     #[test]
-    fn example2() {
-        let candidates = vec![2, 3, 5];
-        let target = 8;
-        let answer: Vec<Vec<i32>> = vec![vec![2, 2, 2, 2], vec![2, 3, 3], vec![3, 5]];
-        assert_eq!(Solution::combination_sum(candidates, target), answer);
+    fn example_1() {
+        // Input: candidates = [2,3,6,7], target = 7
+        // Expected: [[2,2,3],[7]]
+        let result = Solution::combination_sum(vec![2, 3, 6, 7], 7);
+        let expected = vec![vec![2, 2, 3], vec![7]];
+        assert_eq!(normalize(result), normalize(expected));
     }
 
     #[test]
-    fn example3() {
-        let candidates = vec![2];
-        let target = 1;
-        let answer = Vec::<Vec<i32>>::new();
-        assert_eq!(Solution::combination_sum(candidates, target), answer);
+    fn example_2() {
+        // Input: candidates = [2,3,5], target = 8
+        // Expected: [[2,2,2,2],[2,3,3],[3,5]]
+        let result = Solution::combination_sum(vec![2, 3, 5], 8);
+        let expected = vec![vec![2, 2, 2, 2], vec![2, 3, 3], vec![3, 5]];
+        assert_eq!(normalize(result), normalize(expected));
+    }
+
+    #[test]
+    fn example_3() {
+        // Input: candidates = [2], target = 1
+        // Expected: []
+        let result: Vec<Vec<i32>> = Solution::combination_sum(vec![2], 1);
+        assert!(normalize(result).is_empty());
     }
 }

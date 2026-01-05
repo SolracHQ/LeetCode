@@ -1,27 +1,26 @@
 /**
- * # 19. Remove Nth Node From End of List - https://leetcode.com/problems/remove-nth-node-from-end-of-list/
- * Given the head of a linked list, remove the nth node from the end of the list and return its head.
- */
+* 19. Remove Nth Node From End of List
+*
+* Given the head of a linked list, remove the nth node from the end of the list and return its head.
+
+*
+* Example 1:
+* Input: head = [1,2,3,4,5], n = 2
+* Output: [1,2,3,5]
+*
+* Example 2:
+* Input: head = [1], n = 1
+* Output: []
+*
+* Example 3:
+* Input: head = [1,2], n = 1
+* Output: [1]
+
+*/
 #[cfg(test)]
 struct Solution;
 
-#[cfg(test)]
-#[derive(PartialEq, Eq, Clone, Debug)]
-pub struct ListNode {
-    pub val: i32,
-    pub next: Option<Box<ListNode>>,
-}
-
-#[cfg(test)]
-impl ListNode {
-    #[inline]
-    fn new(val: i32) -> Self {
-        ListNode {
-            next: None,
-            val,
-        }
-    }
-}
+use crate::ListNode;
 
 #[cfg(test)]
 fn to_list(nums: &[&[i32]]) -> Option<Box<ListNode>> {
@@ -67,33 +66,35 @@ impl Solution {
 
 #[cfg(test)]
 mod test {
-    use super::*;
-
-    fn from_vec(list: Vec<i32>) -> Option<Box<ListNode>> {
-        to_list(&[&list])
-    }
+    use super::Solution;
 
     #[test]
     fn example_1() {
+        // Input: head = [1,2,3,4,5], n = 2
+        // Expected: [1,2,3,5]
         assert_eq!(
-            Solution::remove_nth_from_end(from_vec(vec![1, 2, 3, 4, 5]), 2),
-            from_vec(vec![1, 2, 3, 5])
-        )
+            super::to_list(&[&[1, 2, 3, 5]]),
+            Solution::remove_nth_from_end(super::to_list(&[&[1, 2, 3, 4, 5]]), 2)
+        );
     }
 
     #[test]
     fn example_2() {
+        // Input: head = [1], n = 1
+        // Expected: []
         assert_eq!(
-            Solution::remove_nth_from_end(from_vec(vec![1]), 1),
-            from_vec(vec![])
-        )
+            None,
+            Solution::remove_nth_from_end(super::to_list(&[&[1]]), 1)
+        );
     }
 
     #[test]
     fn example_3() {
+        // Input: head = [1,2], n = 1
+        // Expected: [1]
         assert_eq!(
-            Solution::remove_nth_from_end(from_vec(vec![1,2]), 1),
-            from_vec(vec![1])
-        )
+            super::to_list(&[&[1]]),
+            Solution::remove_nth_from_end(super::to_list(&[&[1, 2]]), 1)
+        );
     }
 }

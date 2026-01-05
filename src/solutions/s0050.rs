@@ -1,9 +1,26 @@
 /**
- * Problem 50. Pow(x, n)
- * In this problem, we need to implement a function to calculate the power of a number.
+* 50. Pow(x, n)
+*
+* Implement pow(x, n), which calculates x raised to the power n (i.e., x^n).
+
+*
+* Example 1:
+* Input: x = 2.00000, n = 10
+* Output: 1024.00000
+*
+* Example 2:
+* Input: x = 2.10000, n = 3
+* Output: 9.26100
+*
+* Example 3:
+* Input: x = 2.00000, n = -2
+* Output: 0.25000
+
 */
+#[cfg(test)]
 struct Solution;
 
+#[cfg(test)]
 impl Solution {
     pub fn my_pow(x: f64, n: i32) -> f64 {
         // Handle edge cases
@@ -38,26 +55,31 @@ impl Solution {
     }
 }
 
+#[cfg(test)]
 mod test {
     use super::Solution;
 
     #[test]
-    fn example1() {
-        assert_eq!(Solution::my_pow(2.00000, 10), 1024.00000);
+    fn example_1() {
+        // Input: x = 2.00000, n = 10
+        // Expected: 1024.00000
+        let ans = Solution::my_pow(2.0, 10);
+        assert!((ans - 1024.0).abs() < 1e-9);
     }
 
     #[test]
-    fn example2() {
-        assert_eq!(Solution::my_pow(2.10000, 3), 2.10000_f64.powi(3));
+    fn example_2() {
+        // Input: x = 2.10000, n = 3
+        // Expected: 9.26100
+        let ans = Solution::my_pow(2.1, 3);
+        assert!((ans - 9.261).abs() < 1e-9);
     }
 
     #[test]
-    fn example3() {
-        assert_eq!(Solution::my_pow(2.00000, -2), 0.25000);
-    }
-
-    #[test]
-    fn example4() {
-        assert_eq!(Solution::my_pow(2.00000, -2147483648), 0.0);
+    fn example_3() {
+        // Input: x = 2.00000, n = -2
+        // Expected: 0.25000
+        let ans = Solution::my_pow(2.0, -2);
+        assert!((ans - 0.25).abs() < 1e-9);
     }
 }

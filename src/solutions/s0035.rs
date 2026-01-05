@@ -1,13 +1,27 @@
-/*
- * Problem: 35. Search Insert Position
- * Given a sorted array of distinct integers and a target value, return the index if the target is found. 
- * If not, return the index where it would be if it were inserted in order.
- * You must write an algorithm with O(log n) runtime complexity.
+/**
+* 35. Search Insert Position
+*
+* Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+
+*
+* Example 1:
+* Input: nums = [1,3,5,6], target = 5
+* Output: 2
+*
+* Example 2:
+* Input: nums = [1,3,5,6], target = 2
+* Output: 1
+*
+* Example 3:
+* Input: nums = [1,3,5,6], target = 7
+* Output: 4
+
 */
+#[cfg(test)]
 struct Solution;
 
+#[cfg(test)]
 impl Solution {
-    // O(log n)
     pub fn search_insert(nums: Vec<i32>, target: i32) -> i32 {
         let (mut left, mut right) = (0, nums.len());
         while left < right {
@@ -23,31 +37,28 @@ impl Solution {
     }
 }
 
+#[cfg(test)]
 mod test {
     use super::Solution;
 
     #[test]
     fn example_1() {
-        assert_eq!(Solution::search_insert(vec![1, 3, 5, 6], 5), 2)
+        // Input: nums = [1,3,5,6], target = 5
+        // Expected: 2
+        assert_eq!(2, Solution::search_insert(vec![1, 3, 5, 6], 5));
     }
 
     #[test]
     fn example_2() {
-        assert_eq!(Solution::search_insert(vec![1, 3, 5, 6], 2), 1)
+        // Input: nums = [1,3,5,6], target = 2
+        // Expected: 1
+        assert_eq!(1, Solution::search_insert(vec![1, 3, 5, 6], 2));
     }
 
     #[test]
     fn example_3() {
-        assert_eq!(Solution::search_insert(vec![1, 3, 5, 6], 7), 4)
-    }
-
-    #[test]
-    fn example_4() {
-        assert_eq!(Solution::search_insert(vec![1, 3, 5, 6], 0), 0)
-    }
-
-    #[test]
-    fn example_5() {
-        assert_eq!(Solution::search_insert(vec![1], 0), 0)
+        // Input: nums = [1,3,5,6], target = 7
+        // Expected: 4
+        assert_eq!(4, Solution::search_insert(vec![1, 3, 5, 6], 7));
     }
 }

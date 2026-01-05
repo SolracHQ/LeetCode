@@ -1,6 +1,26 @@
-// https://leetcode.com/problems/roman-to-integer/
+/**
+* 13. Roman to Integer
+*
+* Given a roman numeral, convert it to an integer.
+
+*
+* Example 1:
+* Input: s = "III"
+* Output: 3
+*
+* Example 2:
+* Input: s = "LVIII"
+* Output: 58
+*
+* Example 3:
+* Input: s = "MCMXCIV"
+* Output: 1994
+
+*/
+#[cfg(test)]
 struct Solution;
 
+#[cfg(test)]
 impl Solution {
     pub fn roman_to_int(s: String) -> i32 {
         fn lookup(ch: char) -> i32 {
@@ -31,21 +51,27 @@ impl Solution {
 }
 
 #[cfg(test)]
-mod tests {
-    use super::*;
+mod test {
+    use super::Solution;
 
     #[test]
     fn example_1() {
-        assert_eq!(Solution::roman_to_int("III".to_string()), 3)
+        // Input: s = "III"
+        // Expected: 3
+        assert_eq!(3, Solution::roman_to_int("III".to_string()));
     }
 
     #[test]
     fn example_2() {
-        assert_eq!(Solution::roman_to_int("LVIII".to_string()), 58)
+        // Input: s = "LVIII"
+        // Expected: 58
+        assert_eq!(58, Solution::roman_to_int("LVIII".to_string()));
     }
 
     #[test]
     fn example_3() {
-        assert_eq!(Solution::roman_to_int("MCMXCIV".to_string()), 1994)
+        // Input: s = "MCMXCIV"
+        // Expected: 1994
+        assert_eq!(1994, Solution::roman_to_int("MCMXCIV".to_string()));
     }
 }

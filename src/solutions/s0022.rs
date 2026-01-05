@@ -1,7 +1,18 @@
 /**
- * # 22. Generate Parentheses - https://leetcode.com/problems/generate-parentheses/
- * Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
- */
+* 22. Generate Parentheses
+*
+* Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+
+*
+* Example 1:
+* Input: n = 3
+* Output: ["((()))","(()())","(())()","()(())","()()()"]
+*
+* Example 2:
+* Input: n = 1
+* Output: ["()"]
+
+*/
 #[cfg(test)]
 struct Solution;
 
@@ -29,14 +40,33 @@ impl Solution {
 
 #[cfg(test)]
 mod test {
-    use crate::Sortable;
     use super::Solution;
 
     #[test]
     fn example_1() {
-        assert_eq!(
-            Solution::generate_parenthesis(3).sorted(),
-            vec!["((()))".to_string(), "(()())".to_string(), "(())()".to_string(), "()(())".to_string(), "()()()".to_string()].sorted()
-        )
+        // Input: n = 3
+        // Expected: ["((()))","(()())","(())()","()(())","()()()"]
+        let mut result = Solution::generate_parenthesis(3);
+        result.sort_unstable();
+        let mut expected = vec![
+            "((()))".to_string(),
+            "(()())".to_string(),
+            "(())()".to_string(),
+            "()(())".to_string(),
+            "()()()".to_string(),
+        ];
+        expected.sort_unstable();
+        assert_eq!(result, expected);
+    }
+
+    #[test]
+    fn example_2() {
+        // Input: n = 1
+        // Expected: ["()"]
+        let mut result = Solution::generate_parenthesis(1);
+        result.sort_unstable();
+        let mut expected = vec!["()".to_string()];
+        expected.sort_unstable();
+        assert_eq!(result, expected);
     }
 }

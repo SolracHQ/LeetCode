@@ -1,14 +1,22 @@
-/*
- * Problem: 38. Count and Say
- * The count-and-say sequence is the sequence of integers with the first five terms as following:
- * - countAndSay(1) = "1"
- * - countAndSay(n) is the way you would "say" the digit string from countAndSay(n-1), which is then converted into a different digit string.
- * To determine how you "say" a digit string, split it into the minimal number of substrings such that each substring contains exactly one unique digit.
- * Then for each substring, say the number of digits, then say the digit.
- * Finally, concatenate every said digit.
+/**
+* 38. Count and Say
+*
+* The count-and-say sequence is a sequence of digit strings defined by the recursive formula.
+
+*
+* Example 1:
+* Input: n = 4
+* Output: "1211"
+*
+* Example 2:
+* Input: n = 1
+* Output: "1"
+
 */
+#[cfg(test)]
 struct Solution;
 
+#[cfg(test)]
 impl Solution {
     pub fn count_and_say(n: i32) -> String {
         let mut result = vec![1u8];
@@ -31,20 +39,21 @@ impl Solution {
     }
 }
 
+#[cfg(test)]
 mod test {
     use super::Solution;
 
     #[test]
-    fn example1() {
-        let n = 1;
-        let answer = "1".to_string();
-        assert_eq!(Solution::count_and_say(n), answer);
+    fn example_1() {
+        // Input: n = 4
+        // Expected: "1211"
+        assert_eq!(Solution::count_and_say(4), "1211".to_string());
     }
 
     #[test]
-    fn example2() {
-        let n = 4;
-        let answer = "1211".to_string();
-        assert_eq!(Solution::count_and_say(n), answer);
+    fn example_2() {
+        // Input: n = 1
+        // Expected: "1"
+        assert_eq!(Solution::count_and_say(1), "1".to_string());
     }
 }

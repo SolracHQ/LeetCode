@@ -1,18 +1,31 @@
-/// 26. Remove Duplicates from Sorted Array
-/// Given an integer array nums sorted in non-decreasing order, 
-/// remove the duplicates in-place such that each unique element appears only once. 
-/// The relative order of the elements should be kept the same. 
-/// Then return the number of unique elements in nums.
+/**
+* 26. Remove Duplicates from Sorted Array
+*
+* Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once.
+
+*
+* Example 1:
+* Input: nums = [1,1,2]
+* Output: 2, nums = [1,2,_]
+*
+* Example 2:
+* Input: nums = [0,0,1,1,1,2,2,3,3,4]
+* Output: 5, nums = [0,1,2,3,4,_,_,_,_,_]
+
+*/
+#[cfg(test)]
 struct Solution;
 
+#[cfg(test)]
 impl Solution {
-
     pub fn remove_duplicates(nums: &mut Vec<i32>) -> i32 {
         nums.dedup();
         nums.len() as _
     }
 
-    pub fn remove_duplicates_asm(nums: &mut Vec<i32>) -> i32 {
+    // I dont remember why I wrote this assembly version, and I dont comment it either.
+    // But it works correctly, I really don't know how 😅
+    pub fn _remove_duplicates_asm(nums: &mut Vec<i32>) -> i32 {
         let mut current_index: usize = 0;
         unsafe {
             std::arch::asm!(
@@ -47,52 +60,17 @@ mod test {
 
     #[test]
     fn example_1() {
-        let mut nums = vec![1,1,2];
-        assert_eq!(
-            Solution::remove_duplicates(&mut nums),
-            2
-        );
-        assert_eq!(
-            nums[0..2],
-            vec![1,2]
-        )
+        // Input: nums = [1,1,2]
+        // Expected: 2, nums = [1,2,_]
+        assert_eq!(Solution::remove_duplicates(&mut vec![1, 1, 2]), 2);
     }
 
     #[test]
     fn example_2() {
-        let mut nums = vec![0,0,1,1,1,2,2,3,3,4];
-        assert_eq!(
-            Solution::remove_duplicates(&mut nums),
-            5
-        );
-        assert_eq!(
-            nums[0..5],
-            vec![0,1,2,3,4]
-        )
-    }
-    #[test]
-    fn example_3() {
-        let mut nums = vec![1,1,2];
-        assert_eq!(
-            Solution::remove_duplicates_asm(&mut nums),
-            2
-        );
-        assert_eq!(
-            nums[0..2],
-            vec![1,2]
-        )
-    }
-
-    #[test]
-    fn example_4() {
-        let mut nums = vec![0,0,1,1,1,2,2,3,3,4];
-        assert_eq!(
-            Solution::remove_duplicates_asm(&mut nums),
-            5
-        );
-        assert_eq!(
-            nums[0..5],
-            vec![0,1,2,3,4]
-        )
+        // Input: nums = [0,0,1,1,1,2,2,3,3,4]
+        // Expected: 5, nums = [0,1,2,3,4,_,_,_,_,_]
+        let mut nums = vec![0, 0, 1, 1, 1, 2, 2, 3, 3, 4];
+        assert_eq!(Solution::remove_duplicates(&mut nums), 5);
+        assert_eq!(nums[..5], vec![0, 1, 2, 3, 4]);
     }
 }

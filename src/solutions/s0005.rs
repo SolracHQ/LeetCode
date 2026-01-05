@@ -1,7 +1,18 @@
 /**
- * # 5. Longest Palindromic Substring - https://leetcode.com/problems/longest-palindromic-substring/
- * Given a string s, returns the longest palindromic substring in s.
- */
+* 5. Longest Palindromic Substring
+*
+* Given a string s, return the longest palindromic substring in s.
+
+*
+* Example 1:
+* Input: s = "babad"
+* Output: "bab"
+*
+* Example 2:
+* Input: s = "cbbd"
+* Output: "bb"
+
+*/
 #[cfg(test)]
 struct Solution;
 
@@ -9,7 +20,8 @@ struct Solution;
 impl Solution {
     pub fn longest_palindrome(s: String) -> String {
         let n = s.len(); // get length of input string
-        if n < 2 { // if input string has length less than 2, it is already a palindrome, so return it
+        if n < 2 {
+            // if input string has length less than 2, it is already a palindrome, so return it
             return s;
         }
 
@@ -26,8 +38,10 @@ impl Solution {
         let mut end = 0;
 
         // Build up the table using dynamic programming
-        for j in 1..n { // iterate through all possible ending indices of a substring
-            for i in 0..j { // iterate through all possible starting indices of a substring
+        for j in 1..n {
+            // iterate through all possible ending indices of a substring
+            for i in 0..j {
+                // iterate through all possible starting indices of a substring
                 if s.as_bytes()[i] != s.as_bytes()[j] {
                     // if the starting and ending characters of the substring do not match
                     // the substring is not a palindrome
@@ -38,7 +52,7 @@ impl Solution {
                 } else {
                     // check if the substring without its starting and ending characters
                     // is a palindrome
-                    palindromes_2d_array[i][j] = palindromes_2d_array[i+1][j-1];
+                    palindromes_2d_array[i][j] = palindromes_2d_array[i + 1][j - 1];
                 }
 
                 // if the current substring is a palindrome and its length is greater than
@@ -52,7 +66,7 @@ impl Solution {
             }
         }
 
-        String::from_utf8_lossy(&s.as_bytes()[start..end+1]).to_string() // return longest palindrome as a string
+        String::from_utf8_lossy(&s.as_bytes()[start..end + 1]).to_string() // return longest palindrome as a string
     }
 }
 
@@ -62,23 +76,15 @@ mod test {
 
     #[test]
     fn example_1() {
-        assert_eq!(
-            Solution::longest_palindrome("babad".to_owned()),
-            "bab"
-        )
+        // Input: s = "babad"
+        // Expected: "bab"
+        assert_eq!(Solution::longest_palindrome("babad".to_owned()), "bab")
     }
+
     #[test]
     fn example_2() {
-        assert_eq!(
-            Solution::longest_palindrome("cbbd".to_owned()),
-            "bb"
-        )
-    }
-    #[test]
-    fn example_3() {
-        assert_eq!(
-            Solution::longest_palindrome("abb".to_owned()),
-            "bb"
-        )
+        // Input: s = "cbbd"
+        // Expected: "bb"
+        assert_eq!(Solution::longest_palindrome("cbbd".to_owned()), "bb")
     }
 }

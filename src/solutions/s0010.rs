@@ -1,3 +1,25 @@
+/**
+* 10. Regular Expression Matching
+*
+* Given an input string s and a pattern p, implement regular expression matching with support for '.' and '*'.
+
+*
+* Example 1:
+* Input: s = "aa", p = "a"
+* Output: false
+*
+* Example 2:
+* Input: s = "aa", p = "a*"
+* Output: true
+*
+* Example 3:
+* Input: s = "ab", p = ".*"
+* Output: true
+
+*/
+#[cfg(test)]
+struct Solution;
+
 #[derive(Debug, Clone)]
 enum Kind {
     WildCard,
@@ -46,7 +68,7 @@ impl Pattern {
     }
 
     pub fn re_match(&mut self, text: &str) -> bool {
-        is_match_priv(self,text, 0)
+        is_match_priv(self, text, 0)
     }
 }
 
@@ -68,7 +90,9 @@ fn is_match_priv(pattern: &mut Pattern, text: &str, index: usize) -> bool {
         }
         let current_state = &pattern.states[pattern.idx];
         if index == chars.len() {
-            return pattern.states[pattern.idx..].iter().all(|e| e.quantifier == Quantifier::ZeroOrMore);
+            return pattern.states[pattern.idx..]
+                .iter()
+                .all(|e| e.quantifier == Quantifier::ZeroOrMore);
         }
         match current_state.quantifier {
             Quantifier::One => {
@@ -77,16 +101,57 @@ fn is_match_priv(pattern: &mut Pattern, text: &str, index: usize) -> bool {
                 }
                 index += 1;
                 pattern.idx += 1;
-            },
+            }
             Quantifier::ZeroOrMore => {
                 let mut fake = vec![current_state.clone()];
                 fake[0].quantifier = Quantifier::One;
                 fake.extend_from_slice(&pattern.states[pattern.idx..]);
                 pattern.idx += 1;
-                if is_match_priv(&mut Pattern { idx: 0, states: fake }, text, index) {
+                if is_match_priv(
+                    &mut Pattern {
+                        idx: 0,
+                        states: fake,
+                    },
+                    text,
+                    index,
+                ) {
                     return true;
                 }
-            },
+            }
         }
+    }
+}
+
+#[cfg(test)]
+impl Solution {
+    pub fn is_match(s: String, p: String) -> bool {
+        let mut pattern = Pattern::new(&p);
+        pattern.re_match(&s)
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::Solution;
+
+    #[test]
+    fn example_1() {
+        // Input: s = "aa", p = "a"
+        // Expected: false
+        assert_eq!(Solution::is_match(format!("aa"), format!("a")), false)
+    }
+
+    #[test]
+    fn example_2() {
+        // Input: s = "aa", p = "a*"
+        // Expected: true
+        assert_eq!(Solution::is_match(format!("aa"), format!("a*")), true)
+    }
+
+    #[test]
+    fn example_3() {
+        // Input: s = "ab", p = ".*"
+        // Expected: true
+        assert_eq!(Solution::is_match(format!("ab"), format!(".*")), true)
     }
 }

@@ -1,33 +1,33 @@
 /**
- * # 21. Merge Two Sorted Lists - https://leetcode.com/problems/merge-two-sorted-lists/
- * You are given the heads of two sorted linked lists list1 and list2.
- * Merge the two lists into one sorted list. The list should be made by splicing together the nodes of the first two lists.
- * Return the head of the merged linked list.
- */
+* 21. Merge Two Sorted Lists
+*
+* You are given the heads of two sorted linked lists list1 and list2. Merge the two lists into one sorted list.
+
+*
+* Example 1:
+* Input: list1 = [1,2,4], list2 = [1,3,4]
+* Output: [1,1,2,3,4,4]
+*
+* Example 2:
+* Input: list1 = [], list2 = []
+* Output: []
+*
+* Example 3:
+* Input: list1 = [], list2 = [0]
+* Output: [0]
+
+*/
 #[cfg(test)]
 struct Solution;
 
-#[derive(PartialEq, Eq, Clone, Debug)]
-#[cfg(test)]
-pub struct ListNode {
-  pub val: i32,
-  pub next: Option<Box<ListNode>>
-}
-
-#[cfg(test)]
-impl ListNode {
-  #[inline]
-  fn new(val: i32) -> Self {
-    ListNode {
-      next: None,
-      val
-    }
-  }
-}
+use crate::ListNode;
 
 #[cfg(test)]
 impl Solution {
-    pub fn merge_two_lists(list1: Option<Box<ListNode>>, list2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+    pub fn merge_two_lists(
+        list1: Option<Box<ListNode>>,
+        list2: Option<Box<ListNode>>,
+    ) -> Option<Box<ListNode>> {
         match (list1, list2) {
             (Some(node1), Some(node2)) => {
                 if node1.val < node2.val {
@@ -51,7 +51,8 @@ impl Solution {
 
 #[cfg(test)]
 mod test {
-    use super::{Solution, ListNode};
+    use super::Solution;
+    use crate::ListNode;
 
     fn to_node(vec: &[i32]) -> Option<Box<ListNode>> {
         let mut head = None;
@@ -61,29 +62,32 @@ mod test {
             head = Some(Box::new(node));
         }
         head
-    }    
+    }
 
     #[test]
     fn example_1() {
+        // Input: list1 = [1,2,4], list2 = [1,3,4]
+        // Expected: [1,1,2,3,4,4]
         assert_eq!(
-            Solution::merge_two_lists(to_node(&[1,2,4]), to_node(&[1,3,4])),
-            to_node(&[1,1,2,3,4,4])
-        )
+            to_node(&[1, 1, 2, 3, 4, 4]),
+            Solution::merge_two_lists(to_node(&[1, 2, 4]), to_node(&[1, 3, 4]))
+        );
     }
 
     #[test]
     fn example_2() {
-        assert_eq!(
-            Solution::merge_two_lists(to_node(&[]), to_node(&[])),
-            to_node(&[])
-        )
+        // Input: list1 = [], list2 = []
+        // Expected: []
+        assert_eq!(None, Solution::merge_two_lists(None, None));
     }
 
     #[test]
     fn example_3() {
+        // Input: list1 = [], list2 = [0]
+        // Expected: [0]
         assert_eq!(
-            Solution::merge_two_lists(to_node(&[]), to_node(&[0])),
-            to_node(&[0])
-        )
+            to_node(&[0]),
+            Solution::merge_two_lists(None, to_node(&[0]))
+        );
     }
 }

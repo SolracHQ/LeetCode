@@ -1,14 +1,18 @@
+// Definition for singly-linked list.
 #[cfg(test)]
-trait Sortable<T: Ord> {
-    fn sorted(&mut self) -> &mut Self;
+#[derive(PartialEq, Eq, Clone, Debug)]
+pub struct ListNode {
+    pub val: i32,
+    pub next: Option<Box<ListNode>>,
 }
 
 #[cfg(test)]
-impl<T: Ord> Sortable<T> for Vec<T> {
-    fn sorted(&mut self) -> &mut Self {
-        self.sort_unstable();
-        self
+impl ListNode {
+    #[inline]
+    fn new(val: i32) -> Self {
+        ListNode { next: None, val }
     }
 }
+
 #[cfg(test)]
 mod solutions;

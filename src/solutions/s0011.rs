@@ -1,10 +1,18 @@
 /**
- * # 11. Container With Most Water - https://leetcode.com/problems/container-with-most-water/
- * You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).
- * Find two lines that together with the x-axis form a container, such that the container contains the most water.
- * Return the maximum amount of water a container can store.
- * Notice that you may not slant the container.
- */
+* 11. Container With Most Water
+*
+* You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).
+
+*
+* Example 1:
+* Input: height = [1,8,6,2,5,4,8,3,7]
+* Output: 49
+*
+* Example 2:
+* Input: height = [1,1]
+* Output: 1
+
+*/
 #[cfg(test)]
 struct Solution;
 
@@ -35,11 +43,15 @@ mod test {
 
     #[test]
     fn example_1() {
-        assert_eq!(Solution::max_area(vec![1, 8, 6, 2, 5, 4, 8, 3, 7]), 49)
+        // Input: height = [1,8,6,2,5,4,8,3,7]
+        // Expected: 49
+        assert_eq!(49, Solution::max_area(vec![1, 8, 6, 2, 5, 4, 8, 3, 7]));
     }
 
     #[test]
     fn example_2() {
-        assert_eq!(Solution::max_area(vec![1, 1]), 1)
+        // Input: height = [1,1]
+        // Expected: 1
+        assert_eq!(1, Solution::max_area(vec![1, 1]));
     }
 }

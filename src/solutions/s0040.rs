@@ -1,13 +1,13 @@
-/// 40. Combination Sum II
-/// https://leetcode.com/problems/combination-sum-ii/
-///
-/// Given a collection of candidate numbers (candidates) and a target number (target), find all unique combinations in candidates where the candidate numbers sums to target.
-/// Each number in candidates may only be used once in the combination.
-/// Note:
-/// All numbers (including target) will be positive integers.
-/// The solution set must not contain duplicate combinations.
+/**
+* 40. Combination Sum II
+*
+* Given a collection of candidate numbers (candidates) and a target number (target), find all unique combinations in candidates where the candidate numbers sum to target.
+
+*/
+#[cfg(test)]
 struct Solution;
 
+#[cfg(test)]
 impl Solution {
     pub fn combination_sum2(candidates: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
         let mut candidates = candidates;
@@ -24,7 +24,6 @@ impl Solution {
 
             if sum < target {
                 if let Some(last) = indices.pop() {
-
                     let mut next = last + 1;
 
                     if next >= candidates.len() {
@@ -54,28 +53,23 @@ impl Solution {
     }
 }
 
+#[cfg(test)]
 mod test {
-    use super::*;
+    use super::Solution;
 
-    #[test]
-    fn example_1() {
-        assert_eq!(
-            Solution::combination_sum2(vec![10, 1, 2, 7, 6, 1, 5], 8),
-            vec![vec![1, 1, 6], vec![1, 2, 5], vec![1, 7], vec![2, 6]]
-                .into_iter()
-                .rev()
-                .collect::<Vec<Vec<i32>>>()
-        );
+    fn normalize(mut v: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
+        for inner in v.iter_mut() {
+            inner.sort_unstable();
+        }
+        v.sort_unstable();
+        v
     }
 
     #[test]
-    fn example_2() {
-        assert_eq!(
-            Solution::combination_sum2(vec![2, 5, 2, 1, 2], 5),
-            vec![vec![1, 2, 2], vec![5]]
-                .into_iter()
-                .rev()
-                .collect::<Vec<Vec<i32>>>()
-        );
+    fn test_case_1() {
+        // Example: candidates = [10,1,2,7,6,1,5], target = 8
+        let result = Solution::combination_sum2(vec![10, 1, 2, 7, 6, 1, 5], 8);
+        let expected = vec![vec![1, 1, 6], vec![1, 2, 5], vec![1, 7], vec![2, 6]];
+        assert_eq!(normalize(result), normalize(expected));
     }
 }

@@ -1,0 +1,40 @@
+/**
+ * {{ number }}. {{ title }}
+ *
+ * {{ description }}
+{% if examples %}
+ *
+{% for example in examples %} * Example {{ loop.index }}:
+ * Input: {{ example.input }}
+ * Output: {{ example.output }}
+{% if not loop.last %} *
+{% endif %}{% endfor %}{% endif %}
+ */
+#[cfg(test)]
+struct Solution;
+
+#[cfg(test)]
+impl Solution {
+{% if signature %}    {{ signature }} {
+        todo!()
+    }
+{% else %}    // TODO: Implement solution
+{% endif %}}
+
+#[cfg(test)]
+mod test {
+    use super::Solution;
+{% if examples %}
+{% for example in examples %}
+    #[test]
+    fn example_{{ loop.index }}() {
+        // Input: {{ example.input }}
+        // Expected: {{ example.output }}
+        todo!()
+    }
+{% endfor %}{% else %}
+    #[test]
+    fn test_case_1() {
+        // TODO: Add test
+    }
+{% endif %}}

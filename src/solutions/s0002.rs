@@ -1,40 +1,50 @@
 /**
- * 2. Add Two Numbers - https://leetcode.com/problems/add-two-numbers/
- *
- * You are given two non-empty linked lists representing two non-negative integers.
- * The digits are stored in reverse order, and each of their nodes contains a single digit.
- * Add the two numbers and return the sum as a linked list.
- *
- * You may assume the two numbers do not contain any leading zero, except the number 0 itself.
- */
+* 2. Add Two Numbers
+*
+* You are given two non-empty linked lists representing two non-negative integers. Add the two numbers and return the sum as a linked list.
+
+*
+* Example 1:
+* Input: l1 = [2,4,3], l2 = [5,6,4]
+* Output: [7,0,8]
+*
+* Example 2:
+* Input: l1 = [0], l2 = [0]
+* Output: [0]
+*
+* Example 3:
+* Input: l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]
+* Output: [8,9,9,9,0,0,0,1]
+
+*/
 #[cfg(test)]
 struct Solution;
 
-// Definition for singly-linked list.
-#[derive(PartialEq, Eq, Clone, Debug)]
-pub struct ListNode {
-    pub val: i32,
-    pub next: Option<Box<ListNode>>,
-}
-
-#[cfg(test)]
-impl ListNode {
-    #[inline]
-    fn new(val: i32) -> Self {
-        ListNode { next: None, val }
-    }
-}
+use crate::ListNode;
 
 #[cfg(test)]
 impl Solution {
-    pub fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+    pub fn add_two_numbers(
+        l1: Option<Box<ListNode>>,
+        l2: Option<Box<ListNode>>,
+    ) -> Option<Box<ListNode>> {
         // Recursive function that adds two linked lists and a carry value
-        fn add_lists(l1: Option<&Box<ListNode>>, l2: Option<&Box<ListNode>>, carry: i32) -> Option<Box<ListNode>> {
+        fn add_lists(
+            l1: Option<&Box<ListNode>>,
+            l2: Option<&Box<ListNode>>,
+            carry: i32,
+        ) -> Option<Box<ListNode>> {
             match (l1, l2) {
                 // Base case: both linked lists are empty and carry is 0
-                (None, None) => if carry == 0 { None }
-                // Base case: both linked lists are empty and carry is != 0 Create a last node with carry
-                else { Some(Box::new(ListNode::new(carry))) },
+                (None, None) => {
+                    if carry == 0 {
+                        None
+                    }
+                    // Base case: both linked lists are empty and carry is != 0 Create a last node with carry
+                    else {
+                        Some(Box::new(ListNode::new(carry)))
+                    }
+                }
 
                 // Case: one linked list is empty and the other is not
                 (Some(n1), None) | (None, Some(n1)) => {
@@ -42,7 +52,10 @@ impl Solution {
                     let carry = sum / 10;
                     let val = sum % 10;
                     // Create a new ListNode with the sum and recurse with the remaining elements and the carry
-                    Some(Box::new(ListNode { val, next: add_lists(n1.next.as_ref(), None, carry) }))
+                    Some(Box::new(ListNode {
+                        val,
+                        next: add_lists(n1.next.as_ref(), None, carry),
+                    }))
                 }
 
                 // Case: both linked lists have elements
@@ -51,7 +64,10 @@ impl Solution {
                     let carry = sum / 10;
                     let val = sum % 10;
                     // Create a new ListNode with the sum and recurse with the remaining elements and the carry
-                    Some(Box::new(ListNode { val, next: add_lists(n1.next.as_ref(), n2.next.as_ref(), carry) }))
+                    Some(Box::new(ListNode {
+                        val,
+                        next: add_lists(n1.next.as_ref(), n2.next.as_ref(), carry),
+                    }))
                 }
             }
         }
@@ -80,34 +96,31 @@ mod test {
 
     #[test]
     fn example_1() {
+        // Input: l1 = [2,4,3], l2 = [5,6,4]
+        // Expected: [7,0,8]
         assert_eq!(
             to_node(&[7, 0, 8]),
-            Solution::add_two_numbers(
-                to_node(&[2, 4, 3]),
-                to_node(&[5, 6, 4])
-            )
+            Solution::add_two_numbers(to_node(&[2, 4, 3]), to_node(&[5, 6, 4]))
         )
     }
 
     #[test]
     fn example_2() {
+        // Input: l1 = [0], l2 = [0]
+        // Expected: [0]
         assert_eq!(
             to_node(&[0]),
-            Solution::add_two_numbers(
-                to_node(&[0]),
-                to_node(&[0])
-            )
+            Solution::add_two_numbers(to_node(&[0]), to_node(&[0]))
         )
     }
 
     #[test]
     fn example_3() {
+        // Input: l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]
+        // Expected: [8,9,9,9,0,0,0,1]
         assert_eq!(
-            to_node(&[8,9,9,9,0,0,0,1]),
-            Solution::add_two_numbers(
-                to_node(&[9,9,9,9,9,9,9]),
-                to_node(&[9,9,9,9])
-            )
+            to_node(&[8, 9, 9, 9, 0, 0, 0, 1]),
+            Solution::add_two_numbers(to_node(&[9, 9, 9, 9, 9, 9, 9]), to_node(&[9, 9, 9, 9]))
         )
     }
 }
