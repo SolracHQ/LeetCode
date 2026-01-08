@@ -12,7 +12,7 @@ The following is a list of problems that have been solved, along with the corres
 
 | Problem | Solution | Link |
 |---------|----------|------|
-| Two Sum | [s0001.rs](./src/solutions/s0001.rs) | [LeetCode](https://leetcode.com/problems/two-sum/) |
+| Two Sum | [s0001.rs](src/solutions/s0001.rs) | [LeetCode](https://leetcode.com/problems/two-sum/) |
 | Add Two Numbers | [s0002.rs](src/solutions/s0002.rs) | [LeetCode](https://leetcode.com/problems/add-two-numbers/) |
 | Longest Substring Without Repeating Characters | [s0003.rs](src/solutions/s0003.rs) | [LeetCode](https://leetcode.com/problems/longest-substring-without-repeating-characters/) |
 | Longest Palindromic Substring | [s0005.rs](src/solutions/s0005.rs) | [LeetCode](https://leetcode.com/problems/longest-palindromic-substring/) |
@@ -49,6 +49,7 @@ The following is a list of problems that have been solved, along with the corres
 | Pow(x, n) | [s0050.rs](src/solutions/s0050.rs) | [LeetCode](https://leetcode.com/problems/powx-n/) |
 | Length of Last Word | [s0058.rs](src/solutions/s0058.rs) | [LeetCode](https://leetcode.com/problems/length-of-last-word/) |
 | Pascal's Triangle | [s0118.rs](src/solutions/s0118.rs) | [LeetCode](https://leetcode.com/problems/pascals-triangle/) |
+| Valid Palindrome | [s0125.rs](src/solutions/s0125.rs) | [LeetCode](https://leetcode.com/problems/valid-palindrome/) |
 | Single Number | [s0136.rs](src/solutions/s0136.rs) | [LeetCode](https://leetcode.com/problems/single-number/) |
 | Single Number II | [s0137.rs](src/solutions/s0137.rs) | [LeetCode](https://leetcode.com/problems/single-number-ii/) |
 | Reverse Linked List | [s0206.rs](src/solutions/s0206.rs) | [LeetCode](https://leetcode.com/problems/reverse-linked-list/) |

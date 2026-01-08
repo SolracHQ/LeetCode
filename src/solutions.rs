@@ -35,6 +35,7 @@ mod s0040;
 mod s0050;
 mod s0058;
 mod s0118;
+mod s0125;
 mod s0136;
 mod s0137;
 mod s0206;

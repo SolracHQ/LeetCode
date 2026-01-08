@@ -40,3 +40,4 @@ problems:
     - single-number-ii
     - reverse-linked-list
     - squares-of-a-sorted-array
+    - valid-palindrome
